@@ -37,13 +37,18 @@ function changeColor(e) {
 }
 
 function resetCanvas() {
-    const canvas = document.querySelectorAll('#canvasGrid > div')
-    canvas.forEach((item => item.style.backgroundColor = "#ffffff"));
+    const canvas = document.getElementById('canvasGrid')
+    while (canvas.firstChild){
+        canvas.removeChild(canvas.lastChild);
+    };
     
     let newSize = prompt("Enter Size: (Max 64)");
-    if (parseInt(newSize) > 64 || parseInt(newSize) <= 0 || newSize == ""){
+    if (parseInt(newSize) > 64 || parseInt(newSize) <= 0){
         alert("Sorry, please try again");
         resetCanvas();
+    }
+    else if (newSize == ""){
+        createSquare(16, 16)
     }
     else {
         createSquare(newSize, newSize);
