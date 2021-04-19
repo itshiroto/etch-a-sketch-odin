@@ -1,0 +1,35 @@
+:root {
+    --grid-row: 0;
+    --grid-col: 0;
+}
+
+@keyframes turnBlack {
+    from {background-color: white;}
+    to {background-color: black;}
+}
+
+
+#canvasGrid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-col), 35px);
+    grid-template-rows: repeat(var(--grid-row), 35px);
+}
+
+.canvas-sqr {
+    margin: 0; /* Remove margins */
+    place-self: center;
+    height: 100%;
+    width: 100%;
+}
+
+.canvas-sqr-hover {
+    background-color: black;
+    animation-name: turnBlack;
+    animation-duration: 0.2s;
+}
+
+#container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
