@@ -1,3 +1,5 @@
+createSquare(16, 16);
+
 function createCanvas() {
     let parent = document.createElement('div');
     parent.id = "canvasGrid";
@@ -17,14 +19,15 @@ function createSquare(row, col) {
     }
 }
 
-createCanvas();
-createSquare(16, 16);
-
-document.querySelectorAll('#canvasGrid > div').forEach((item) => {
+const canvas = document.querySelectorAll('#canvasGrid > div')
+canvas.forEach((item) => {
     item.addEventListener('mouseover', (e) => {
         e.target.classList.add('canvas-sqr-hover');
     })
 });
 
-
+const clearBtn = document.getElementById('clearBtn')
+clearBtn.addEventListener('click', e => {
+    canvas.forEach((item => item.classList.remove('canvas-sqr-hover')));
+})
 
