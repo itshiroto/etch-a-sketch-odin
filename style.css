@@ -10,15 +10,11 @@ html * {
 }
 
 #container {
+    display: flex;
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
     padding-top: 100px;
-}
-
-@keyframes turnBlack {
-    from {background-color: white;}
-    to {background-color: black;}
 }
 
 #canvasGrid {
@@ -32,18 +28,28 @@ html * {
     background-color: white;
 }
 
+.canvas-sqr {
+    margin: 0; /* Remove margins */
+    place-self: center;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    transition: background-color 100ms;
+}
+
 #buttons {
-    margin-top: 25px;
+    width: 300px;
     display: flex;
-    justify-items: center;
-    align-content: center;
+    justify-content: center;
+    align-items: left;
+    gap: 10px;
+    flex-flow: column;
 }
 
 #clearBtn {
-    margin: auto;
     width: 100%;
     height: 40px;
-    max-width: 100px;
+    max-width: 200px;
     font-size: 1.2em;
     border: 0;
     font-weight: 400;
@@ -56,15 +62,21 @@ html * {
     color: white;
 }
 
-.canvas-sqr {
-    margin: 0; /* Remove margins */
-    place-self: center;
-    height: 100%;
-    width: 100%;
+#buttons > label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.canvas-sqr-hover {
-    background-color: black;
-    animation-name: turnBlack;
-    animation-duration: 0.2s;
-}
+.checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+  }

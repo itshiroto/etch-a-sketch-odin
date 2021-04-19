@@ -1,5 +1,8 @@
 createSquare(16, 16);
 
+const clearBtn = document.getElementById('clearBtn')
+clearBtn.addEventListener('click', resetCanvas);
+
 function createCanvas() {
     let parent = document.createElement('div');
     parent.id = "canvasGrid";
@@ -15,19 +18,36 @@ function createSquare(row, col) {
         let list = document.getElementById('canvasGrid');
         let entry = document.createElement('div');
         entry.classList.add('canvas-sqr')
+        entry.addEventListener('mouseover', changeColor);
         list.appendChild(entry);    
     }
 }
 
-const canvas = document.querySelectorAll('#canvasGrid > div')
-canvas.forEach((item) => {
-    item.addEventListener('mouseover', (e) => {
-        e.target.classList.add('canvas-sqr-hover');
-    })
-});
+function changeColor(e) {
+    const isRGB = document.getElementById('rgbcheck').checked;
+    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    switch(isRGB) {
+        case true: 
+            e.target.style.backgroundColor = '#' + randomColor;
+            break;
+        case false: 
+            e.target.style.backgroundColor = "#000000";
+            break;
+    }
+}
 
-const clearBtn = document.getElementById('clearBtn')
-clearBtn.addEventListener('click', e => {
-    canvas.forEach((item => item.classList.remove('canvas-sqr-hover')));
-})
+function resetCanvas() {
+    const canvas = document.querySelectorAll('#canvasGrid > div')
+    canvas.forEach((item => item.style.backgroundColor = "#ffffff"));
+    
+    let newSize = prompt("Enter Size: (Max 64)");
+    if (parseInt(newSize) > 64 || parseInt(newSize) <= 0 || newSize == ""){
+        alert("Sorry, please try again");
+        resetCanvas();
+    }
+    else {
+        createSquare(newSize, newSize);
+    }
+}
+
 
